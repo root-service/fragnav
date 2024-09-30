@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "fragnav"
 include(":app")
- 
+include(":fragnavlibrary")
