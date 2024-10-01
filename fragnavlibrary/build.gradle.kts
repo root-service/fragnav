@@ -7,20 +7,31 @@ plugins {
 publishing {
     publications {
         create<MavenPublication>("release") {
+
+            afterEvaluate {
+                from(components["release"])
+            }
+
             groupId = "com.github.root-service"
             artifactId = "fragnavlibrary"
             version = "1.1.0"
+
             pom {
                 name.set("FragNavLibrary")
                 description.set("A library for managing fragment navigation.")
                 url.set("https://github.com/root-service/fragnav")
             }
-            artifact("$buildDir/outputs/aar/fragnavlibrary-release.aar")
+
+            // artifact("$buildDir/outputs/aar/fragnavlibrary-release.aar")
         }
     }
     repositories {
         mavenLocal()
     }
+}
+
+tasks.named("publishReleasePublicationToMavenLocal") {
+    dependsOn(tasks.named("bundleReleaseAar"))
 }
 
 android {
