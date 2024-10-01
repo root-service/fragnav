@@ -4,6 +4,25 @@ plugins {
     `maven-publish`
 }
 
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.root-service"
+            artifactId = "fragnavlibrary"
+            version = "1.1.0"
+            pom {
+                name.set("FragNavLibrary")
+                description.set("A library for managing fragment navigation.")
+                url.set("https://github.com/root-service/fragnav")
+            }
+            artifact("$buildDir/outputs/aar/fragnavlibrary-release.aar")
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
 android {
     namespace = "ch.rootserviceag.fragnavlibrary"
     compileSdk = 34
@@ -31,6 +50,16 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
