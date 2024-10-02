@@ -63,16 +63,6 @@ android {
     }
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
-
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
